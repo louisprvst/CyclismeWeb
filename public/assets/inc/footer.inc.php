@@ -1,3 +1,7 @@
+<?php
+//require_once __DIR__ . '/../controllers/indexController.php'; 
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -8,7 +12,7 @@
 </head>
 <footer>
     <div class="logo_footer">
-        <img src="CyclismeWeb\public\assets\inc\img\Tour_de_France_logo.svg.png" alt="Logo_tdf">
+        <img src="CyclismeWeb/public/assets/inc/img/Tour_de_France_logo.svg.png" alt="Logo_tdf">
     </div>
     <div class="footer_links">
         <a href="#COPYRIGHT">Copyright : © 2025 Prono Cyclisme</a><br>
