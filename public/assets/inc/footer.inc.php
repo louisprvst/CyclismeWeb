@@ -11,8 +11,8 @@
         <img src="..\public\assets\inc\img\Tour_de_France_logo.svg.png" alt="Logo_tdf">
     </div>
     <div class="footer_links">
-        <a href="#COPYRIGHT">Copyright : © 2025 Prono Cyclisme</a><br>
-        <a href="#MENTIONS_LÉGALES">Mentions légales & politique de confidentialité</a><br>
-        <a href="#CRÉDITS">Crédits</a>
+        <a href="..\public\copyright.php">Copyright : © 2025 Prono Vélo</a><br>
+        <a href="..\public\mentionsLegales.php">Mentions légales & politique de confidentialité</a><br>
+        <a href="..\public\credits.php">Crédits</a>
     </div>
 </footer>
