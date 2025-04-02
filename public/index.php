@@ -8,19 +8,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cyclisme Web</title>
-    <link rel="stylesheet" href="CyclismeWeb\public\assets\styles\styles.css">
+    <link rel="stylesheet" href="..\public\styles\styles.css">
 </head>
-<body>
-    <div id="header-container">
-        <iframe src="CyclismeWeb\public\assets\inc\header.inc.php" frameborder="0" style="width: 100%; height: auto;"></iframe>
-    </div>
+<body class="body-index">
+    <?php include 'assets/inc/header.inc.php'; ?>
     <main>
         <div class="container">
-            <img src="CyclismeWeb\public\assets\inc\img\tdf25-affiche-parcours-1.jpg" alt="Carte tdf" style="width: 100%; height: auto;">
+            <img src="..\public\assets\inc\img\tdf25-affiche-parcours-1.jpg" alt="Carte tdf" style="width: 100%; height: auto;">
         </div>
     </main>
-    <div id="footer-container">
-        <iframe src="CyclismeWeb\public\assets\inc\footer.inc.php" frameborder="0" style="width: 100%; height: auto;"></iframe>
-    </div>
+    <?php include 'assets/inc/footer.inc.php'; ?>
 </body>
 </html>

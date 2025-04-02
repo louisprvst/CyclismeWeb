@@ -8,15 +8,17 @@
 </head>
 <header>
     <div class="logo">
-        <img src="CyclismeWeb\public\assets\inc\img\Tour_de_France_logo.svg.png" alt="Logo_tdf">
+        <a href="..\public\index.php">
+            <img src="..\public\assets\inc\img\Tour_de_France_logo.svg.png" alt="Logo_tdf">
+        </a>
     </div>
     <div class="navbar" id="navbar">
         <nav>
             <ul>
                 <li><a href="#PARCOURS">PARCOURS</a></li>
-                <li><a href="#PARTICIPANTS">PARTICIPANTS</a></li>
-                <li><a href="#RÉSULTATS">RÉSULUTATS</a></li>
-                <li><a href="#CONTACTS">CONTACTS</a></li>
+                <li><a href="..\public\participants.php">PARTICIPANTS</a></li>
+                <li><a href="..\public\resultats.php">RÉSULTATS</a></li>
+                <li><a href="..\public\contact.php">CONTACTS</a></li>
             </ul>
         </nav>
     </div>
