@@ -37,7 +37,7 @@ header h1 {
 }
 
 .logo img {
-    height: 75px;
+    height: 50px;
     width: auto;
 }
 
@@ -70,6 +70,64 @@ header h1 {
 /* Sections */
 main {
     padding: 2rem;
+}
+
+.timeline-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+
+.timeline {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    background: #f0f0f0;
+    padding: 50px;
+    border-radius: 20px;
+    position: relative;
+    gap: 12px;
+}
+
+.timeline-item {
+    text-align: center;
+    flex: 1;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}
+
+.timeline-item .dot {
+    width: 20px;
+    height: 20px;
+    background: #FFD700;
+    border-radius: 50%;
+    display: block;
+    margin: auto;
+}
+
+.timeline-item:hover .dot,
+.timeline-item:hover .date {
+    transform: scale(1.5);
+    cursor: pointer;
+}
+
+.timeline-item .date {
+    display: block;
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    width: 90%;
+    height: 2px;
+    top: 50%;
+    left: 5%;
 }
 
 section {

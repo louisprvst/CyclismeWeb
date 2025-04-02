@@ -8,7 +8,7 @@
 </head>
 <footer>
     <div class="logo_footer">
-        <img src="CyclismeWeb\public\assets\inc\img\Tour_de_France_logo.svg.png" alt="Logo_tdf">
+        <img src="assets\inc\img\Tour_de_France_logo.svg.png" alt="Logo_tdf" width="100%">
     </div>
     <div class="footer_links">
         <a href="#COPYRIGHT">Copyright : © 2025 Prono Cyclisme</a><br>
