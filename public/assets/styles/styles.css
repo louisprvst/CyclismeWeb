@@ -14,8 +14,8 @@ body {
 
 /* Header */
 header {
-    background-color: #333; /* Noir élégant */
-    color: white;
+    background-color: white; /* Noir élégant */
+    color: black;
     padding: 1rem 2rem;
     display: flex;
     align-items: center;
@@ -53,16 +53,16 @@ header .logo img:hover {
     align-items: center;
 }
 
-.navbar a, .navbar button {
+.navbar a {
     text-decoration: none;
-    color: white;
-    font-size: 1.2rem; /* Taille des icônes */
+    color: black;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
     background: none;
     border: none;
     cursor: pointer;
-    transition: color 0.3s ease, transform 0.3s ease;
 }
-
 .navbar a:hover, .navbar button:hover {
     color: #f7c948; /* Jaune doré au survol */
     transform: scale(1.1); /* Zoom léger */
@@ -204,7 +204,7 @@ tr:hover {
 
 /* Footer */
 footer {
-    background-color: #333;
+    background-color: white;
     color: white;
     text-align: center;
     padding: 1rem 0;
@@ -213,7 +213,7 @@ footer {
 }
 
 footer a {
-    color: #f7c948;
+    color: black;
     text-decoration: none;
     transition: color 0.3s ease;
 }
@@ -257,4 +257,8 @@ footer .logo_footer img {
     position: absolute;
     top: 0px;
     right: 20px;
+}
+
+.btn-icon i {
+    margin-right: 8px; /* Ajustez selon vos besoins */
 }

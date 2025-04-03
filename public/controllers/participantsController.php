@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/../../config/init.conf.php';
 
-if (!isset($_COOKIE['token'])) {
+if (!isset($_SESSION['user']['login']) || ($_SESSION['user']['login'] !== true)) {
     // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
     header('Location: ../login.php');
     exit();

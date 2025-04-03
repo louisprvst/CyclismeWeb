@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="assets/styles/styles.css">
     <link rel="icon" type="image/png" href="assets/img/logo.png">
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="../js/site.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     </head>
     <header>
@@ -29,17 +30,20 @@
                 <?php if (isset($_COOKIE['token'])): ?>
                     <!-- Bouton "Se déconnecter" -->
                     <li>
-                        <form action="../controllers/logoutController.php" method="POST" style="display: inline;">
-                            <button type="submit" class="btn-icon">
-                                <i class="fas fa-sign-out-alt"></i> <!-- Icône de déconnexion -->
-                            </button>
-                        </form>
+                        <a href="" class="btn-icon">
+                            <i class="fas fa-user"></i> <!-- Icône de profil -->
+                            <?php echo $_SESSION['user']['username']; ?>
+                        </a>
+                        <a href="../controllers/logoutController.php" class="btn-icon">
+                            <i class="fas fa-sign-out-alt"></i> <!-- Icône de déconnexion -->                        
+                        </a>
                     </li>
                 <?php else: ?>
                     <!-- Bouton "Se connecter" -->
                     <li>
                         <a href="login.php" class="btn-icon">
                             <i class="fas fa-sign-in-alt"></i> <!-- Icône de connexion -->
+                            Se connecter
                         </a>
                     </li>
                 <?php endif; ?>

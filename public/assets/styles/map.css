@@ -1,0 +1,87 @@
+#map {
+    width: 75%;
+    height: 650px;
+    margin: 0 auto;
+    border: black 1px solid;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.leaflet-marker-icon {
+    background-color: #f7c948; 
+    border: 1px solid #000;
+    width: 30px; 
+    height: 20px; 
+    box-shadow: none; 
+    background-image: none !important; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: black;
+    font-size: 12px;
+    border-radius: 3px;
+}
+
+.arrival-marker-icon {
+    background-color: #8B0000; 
+    border: 1px solid #000;
+    width: 30px; 
+    height: 20px; 
+    box-shadow: none; 
+    background-image: none !important; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white; /* Couleur du texte pour les numéros */
+    font-size: 12px;
+    border-radius: 3px;
+}
+
+/* Titre de la carte */
+.map-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+}
+
+/* Texte explicatif */
+.map-description {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+/* Légende de la carte */
+.legend {
+    background: white;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    line-height: 1.5;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.legend h4 {
+    margin: 0 0 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.legend div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.legend span {
+    display: inline-block;
+}

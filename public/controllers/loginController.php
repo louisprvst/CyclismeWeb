@@ -65,6 +65,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['username'], $_POST['p
                 'samesite' => 'Strict' // Empêche les requêtes intersites
             ]
         );
+
+        $_SESSION['user']['username'] = $username;
+        $_SESSION['user']['login'] = true;
+
         header('Location: ../index.php');
         exit();
     } else {

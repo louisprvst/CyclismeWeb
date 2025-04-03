@@ -2,7 +2,7 @@
 
 require_once '../../config/init.conf.php';
 
-if (!isset($_COOKIE['token'])) {
+if (!isset($_SESSION['user']['login']) || ($_SESSION['user']['login'] !== true)) {
     // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
     header('Location: ../login.php');
     exit();
@@ -11,6 +11,8 @@ if (!isset($_COOKIE['token'])) {
 // Supprimer le cookie d'authentification
 setcookie('token', '', time() - 3600, '/', '', false, true); // Expire immédiatement
 
-// Rediriger vers la page de connexion
+unset($_SESSION['user']['login']);
+
+// Rediriger vers la page d'accueil
 header('Location: ../index.php');
 exit();
