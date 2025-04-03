@@ -15,10 +15,13 @@
     <div class="navbar" id="navbar">
         <nav>
             <ul>
-                <li><a href="#PARCOURS">PARCOURS</a></li>
-                <li><a href="participants.php">PARTICIPANTS</a></li>
-                <li><a href="resultats.php">RÉSULTATS</a></li>
-                <li><a href="contact.php">CONTACTS</a></li>
+                <li><a href="..\public\parcours.php">PARCOURS</a></li>
+                <li><a href="..\public\participants.php">PARTICIPANTS</a></li>
+                <li><a href="..\public\resultats.php">RÉSULTATS</a></li>
+                <li><a href="..\public\contact.php">CONTACTS</a></li>
+                <?php if (isset($admin) && $admin === true): ?>
+                    <li><a href="..\public\listUsers.php">GESTION ADMIN</a></li>
+                <?php endif; ?>
             </ul>
         </nav>
     </div>
