@@ -64,3 +64,44 @@ input:focus {
 .btn:hover {
     background-color: #d4ac0d; /* Jaune plus foncé au survol */
 }
+
+/* Style pour le bouton "Connectez-vous" */
+.redirect-login {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.redirect-login p {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #555;
+}
+
+.btn-login {
+    display: inline-block;
+    background-color: #f1c40f; /* Jaune */
+    color: #000000; /* Texte noir */
+    padding: 10px 15px;
+    border: 1px solid #000000; /* Léger contour noir */
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-login:hover {
+    background-color: #d4ac0d; /* Jaune plus foncé au survol */
+    color: #000000; /* Texte reste noir */
+}
+
+/* Style pour les messages d'erreur */
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 15px;
+    border: 1px solid red;
+    padding: 10px;
+    background-color: #ffe6e6; /* Fond rouge clair */
+    border-radius: 5px;
+}
