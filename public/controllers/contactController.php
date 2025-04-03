@@ -1,6 +1,6 @@
 <?php
 require_once '../vendor/autoload.php'; // Charger PHPMailer via Composer
-require_once '../config/init.conf.php'; // Initialiser la session et charger les variables d'environnement
+require_once __DIR__ . '/../../config/init.conf.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;

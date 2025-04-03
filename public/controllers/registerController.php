@@ -7,6 +7,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['username'], $_POST['p
     $username = $_POST['username'];
     $password = $_POST['password'];
 
+    // Vérifier les critères du mot de passe
+    $passwordRegex = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$/';
+
+    if (!preg_match($passwordRegex, $password)) {
+        $_SESSION['error'] = 'Le mot de passe doit contenir au moins 12 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.';
+        header('Location: ../register.php');
+        exit();
+    }
+
     // Construire l'URL pour l'API de register
     $urlRegister = URL_API . 'user/register';
 

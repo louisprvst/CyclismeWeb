@@ -34,6 +34,10 @@ header .logo img {
 header .logo img:hover {
     transform: scale(1.1); /* Zoom léger au survol */
 }
+/* Navbar */
+.navbar {
+    margin-top: 0.5rem; /* Réduit l'espace entre le logo et la navbar */
+}
 
 .navbar ul {
     list-style: none;
@@ -227,4 +231,16 @@ footer .logo_footer img {
     table {
         font-size: 14px;
     }
+}
+
+.footer_links a:hover {
+    text-decoration: underline;
+    color: #f7c948; /* Jaune doré au survol */
+}
+
+/* Style pour le bouton de déconnexion */
+.auth-button {
+    position: absolute;
+    top: 0px;
+    right: 20px;
 }

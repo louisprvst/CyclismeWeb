@@ -8,12 +8,17 @@ require_once '../config/init.conf.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription</title>
     <link rel="stylesheet" href="assets/styles/login-register.css">
+    <link rel="icon" type="image/png" href="assets/img/logo.png">
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
     <div class="form-container">
+        <div class="container">
+            <img src="assets/img/logo.png" alt="Carte tdf" style="width: 100%; height: auto;">
+        </div>
+
         <h1>Inscription</h1>
 
-        <!-- Afficher le message d'erreur s'il existe -->
         <?php if (isset($_SESSION['error'])): ?>
             <div class="error-message" style="color: red; margin-bottom: 15px;">
                 <?= htmlspecialchars($_SESSION['error']); ?>
@@ -32,6 +37,11 @@ require_once '../config/init.conf.php';
             </div>
             <button type="submit" class="btn">S'inscrire</button>
         </form>
+
+        <div class="redirect-login">
+            <p>Vous avez déjà un compte ?</p>
+            <a href="login.php" class="btn-login">Connectez-vous</a>
+        </div>
     </div>
     <script src="assets/js/login-register.js"></script>
 </body>

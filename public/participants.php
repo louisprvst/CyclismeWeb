@@ -1,6 +1,5 @@
 <?php
-// Inclure le contrôleur pour récupérer les données des participants
-require_once 'controllers/participantsController.php';
+    require_once __DIR__ . '/controllers/participantsController.php';
 ?>
 
 <!DOCTYPE html>
