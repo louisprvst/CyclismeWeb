@@ -7,8 +7,9 @@
     <link rel="stylesheet" href="assets/styles/styles.css">
     <link rel="icon" type="image/png" href="assets/img/logo.png">
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     </head>
-<header>
+    <header>
     <div class="logo">
         <a href="index.php">
             <img src="assets/img/logo.png" alt="Logo_tdf">
@@ -24,19 +25,25 @@
                 <?php if (isset($admin) && $admin === true): ?>
                     <li><a href="listUsers.php">GESTION ADMIN</a></li>
                 <?php endif; ?>
-            </ul>
-            <div class="auth-button">
+                <!-- Boutons de connexion/déconnexion -->
                 <?php if (isset($_COOKIE['token'])): ?>
-                    <!-- Bouton "Se déconnecter" si le cookie 'token' existe -->
-                    <form action="../controllers/logoutController.php" method="POST">
-                        <button type="submit" class="btn-login">Se déconnecter</button>
-                    </form>
+                    <!-- Bouton "Se déconnecter" -->
+                    <li>
+                        <form action="../controllers/logoutController.php" method="POST" style="display: inline;">
+                            <button type="submit" class="btn-icon">
+                                <i class="fas fa-sign-out-alt"></i> <!-- Icône de déconnexion -->
+                            </button>
+                        </form>
+                    </li>
                 <?php else: ?>
-                    <!-- Bouton "Se connecter" si le cookie 'token' n'existe pas -->
-                    <a href="login.php" class="btn-login">Se connecter</a>
+                    <!-- Bouton "Se connecter" -->
+                    <li>
+                        <a href="login.php" class="btn-icon">
+                            <i class="fas fa-sign-in-alt"></i> <!-- Icône de connexion -->
+                        </a>
+                    </li>
                 <?php endif; ?>
-            </div>
+            </ul>
         </nav>
     </div>
-    
 </header>
