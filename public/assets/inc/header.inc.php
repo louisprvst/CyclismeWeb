@@ -19,9 +19,7 @@
                 <li><a href="..\public\participants.php">PARTICIPANTS</a></li>
                 <li><a href="..\public\resultats.php">RÉSULTATS</a></li>
                 <li><a href="..\public\contact.php">CONTACTS</a></li>
-                <?php if (isset($admin) && $admin === true): ?>
-                    <li><a href="..\public\listUsers.php">GESTION ADMIN</a></li>
-                <?php endif; ?>
+                <li><a href="..\public\listUsers.php">GESTION ADMIN</a></li>
             </ul>
         </nav>
     </div>

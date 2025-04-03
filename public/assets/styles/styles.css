@@ -6,73 +6,94 @@ body {
     font-family: 'Racing Sans One', sans-serif;
     line-height: 1.6;
     color: #333; /* Texte principal en gris foncé */
-    background-color: #fdfdfd; /* Fond blanc cassé */
+    background: linear-gradient(135deg, #fdfdfd, #f7c948); /* Dégradé élégant */
     margin: 0;
     padding: 0;
+    overflow-x: hidden; /* Évite les débordements horizontaux */
 }
 
 /* Header */
 header {
-    background-color: #f7c948; /* Jaune doré */
-    padding: 0.5rem 0; /* Réduit l'espace vertical */
-    text-align: center;
-    color: #333; /* Texte en gris foncé */
+    background-color: #333; /* Noir élégant */
+    color: white;
+    padding: 1rem 2rem;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-/* Logo */
 header .logo img {
-    height: 85px; /* Réduit la taille du logo */
-    max-width: 100%; /* Empêche le débordement */
-    margin-bottom: 0.5rem; /* Ajoute un léger espacement sous le logo */
+    height: 70px;
+    transition: transform 0.3s ease;
 }
 
-/* Navbar */
-.navbar {
-    margin-top: 0.5rem; /* Réduit l'espace entre le logo et la navbar */
+header .logo img:hover {
+    transform: scale(1.1); /* Zoom léger au survol */
 }
 
 .navbar ul {
     list-style: none;
+    display: flex;
+    gap: 1.5rem;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem; /* Espacement entre les liens */
 }
 
 .navbar a {
     text-decoration: none;
-    color: #333; /* Texte en gris foncé */
-    font-size: 1rem; /* Réduit la taille du texte */
+    color: white;
+    font-size: 1rem;
     padding: 0.5rem 1rem;
     border-radius: 4px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .navbar a:hover {
-    background-color: #ffd700; /* Jaune vif au survol */
-    color: #333; /* Texte en gris foncé */
+    background-color: #f7c948; /* Jaune doré au survol */
+    color: #333;
+    transform: translateY(-3px); /* Lien légèrement surélevé */
 }
 
+/* Section principale */
+main {
+    padding: 2rem;
+    text-align: center;
+}
 
+h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 /* Formulaire */
 form {
     max-width: 600px;
     margin: 2rem auto;
     padding: 20px;
-    background-color: white;
+    background: rgba(255, 255, 255, 0.9); /* Fond semi-transparent */
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-form div {
-    margin-bottom: 15px;
+    backdrop-filter: blur(10px); /* Effet de flou */
 }
 
 form label {
@@ -82,117 +103,128 @@ form label {
     color: #333;
 }
 
-form input[type="text"],
-form input[type="email"],
-form textarea,
-form select {
+form input,
+form select,
+form textarea {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
-    font-family: 'Arial', sans-serif;
-    box-sizing: border-box;
+    margin-bottom: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-form input[type="text"]:focus,
-form input[type="email"]:focus,
-form textarea:focus,
-form select:focus {
-    border-color: #f7c948; /* Jaune doré au focus */
+form input:focus,
+form select:focus,
+form textarea:focus {
+    border-color: #f7c948;
+    box-shadow: 0 0 5px rgba(247, 201, 72, 0.5);
     outline: none;
-    box-shadow: 0 0 5px rgba(247, 201, 72, 0.5); /* Ombre jaune doré */
 }
 
 form button {
-    display: inline-block;
-    background-color: #333; /* Noir */
+    background-color: #333;
     color: white;
     padding: 10px 20px;
     font-size: 16px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 form button:hover {
-    background-color: #f7c948; /* Jaune doré au survol */
-    color: #333; /* Texte en gris foncé */
+    background-color: #f7c948;
+    color: #333;
+    transform: scale(1.05); /* Zoom léger */
 }
 
 /* Tableau */
 table {
-    width: 100%;
+    width: 90%;
+    margin: 2rem auto;
     border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 18px;
-    text-align: left;
-    background-color: white;
+    background: white;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: slideIn 1s ease-in-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 th, td {
-    padding: 12px 15px;
+    padding: 15px;
+    text-align: left;
     border: 1px solid #ddd;
 }
 
 th {
-    background-color: #f7c948; /* Jaune doré pour les en-têtes */
-    color: #333; /* Texte en gris foncé */
-    font-weight: bold;
+    background-color: #f7c948;
+    color: #333;
     text-align: center;
 }
 
 tr:nth-child(even) {
-    background-color: #f9f9f9; /* Gris clair */
+    background-color: #f9f9f9;
 }
 
 tr:hover {
-    background-color: #f1f1f1; /* Gris légèrement plus foncé */
+    background-color: #f1f1f1;
     cursor: pointer;
-}
-
-/* Séparateur entre les sections */
-.section-divider {
-    border: none;
-    border-top: 3px solid black; /* Trait fin et discret */
-    margin: 2rem 0; /* Espacement autour du trait */
-    width: 80%; /* Largeur du trait */
-    margin-left: auto;
-    margin-right: auto;
 }
 
 /* Footer */
 footer {
-    background-color: #333; /* Noir */
+    background-color: #333;
     color: white;
     text-align: center;
     padding: 1rem 0;
     margin-top: 2rem;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
 }
 
-footer .logo_footer img {
-    height: 50px;
-    margin-bottom: 10px;
-}
-
-.footer_links {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
-
-.footer_links a {
-    color: white;
+footer a {
+    color: #f7c948;
     text-decoration: none;
-    font-size: 14px;
+    transition: color 0.3s ease;
 }
 
-.footer_links a:hover {
-    text-decoration: underline;
-    color: #f7c948; /* Jaune doré au survol */
+footer a:hover {
+    color: white;
+}
+
+/* Footer logo */
+footer .logo_footer img {
+    height: 75px; /* Ajustez la hauteur selon vos besoins */
+    max-width: 100%; /* Empêche le débordement */
+    display: block;
+    margin: 15px auto; /* Centre le logo horizontalement */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    table {
+        font-size: 14px;
+    }
 }
