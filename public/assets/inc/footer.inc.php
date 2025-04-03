@@ -11,8 +11,8 @@
         <img src="assets/img/logo.png" alt="Logo_tdf">
     </div>
     <div class="footer_links">
-        <a href="..\public\copyright.php">Copyright : © 2025 Prono Vélo</a><br>
-        <a href="..\public\mentionsLegales.php">Mentions légales & politique de confidentialité</a><br>
-        <a href="..\public\credits.php">Crédits</a>
+        <a href="../copyright.php">Copyright : © 2025 Prono Vélo</a><br>
+        <a href="../mentionsLegales.php">Mentions légales & politique de confidentialité</a><br>
+        <a href=".../credits.php">Crédits</a>
     </div>
 </footer>
