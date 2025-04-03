@@ -14,6 +14,21 @@
     <?php include 'assets/inc/header.inc.php'; ?>
     <div class="content">
         <h1>Liste des Participants</h1>
+        <form id="result-form" method="GET" action="participants.php">
+            <div>
+                <label for="annee">Sélectionnez une année :</label>
+            </div>
+            <div>
+                <select name="annee" id="annee" onchange="this.form.submit()">
+                    <?php
+                    for ($annee = 2020; $annee <= 2025; $annee++) {
+                        $selected = (isset($_GET['annee']) && $_GET['annee'] == $annee) ? 'selected' : '';
+                        echo "<option value=\"$annee\" $selected>$annee</option>";
+                    }
+                    ?>
+                </select>
+            </div>
+        </form>
         <table border="1">
             <thead>
                 <tr>
