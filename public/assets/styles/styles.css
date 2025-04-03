@@ -30,6 +30,8 @@ header .logo img {
     margin-bottom: 0.5rem; /* Ajoute un léger espacement sous le logo */
 }
 
+header 
+
 /* Navbar */
 .navbar {
     margin-top: 0.5rem; /* Réduit l'espace entre le logo et la navbar */
@@ -195,4 +197,11 @@ footer .logo_footer img {
 .footer_links a:hover {
     text-decoration: underline;
     color: #f7c948; /* Jaune doré au survol */
+}
+
+/* Style pour le bouton de déconnexion */
+.auth-button {
+    position: absolute;
+    top: 0px;
+    right: 20px;
 }

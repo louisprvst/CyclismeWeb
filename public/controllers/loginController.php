@@ -1,15 +1,20 @@
 <?php
 
-require_once '../../vendor/autoload.php'; 
 require_once '../../config/init.conf.php';
+
+if (isset($_COOKIE['token'])) {
+    // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
+    header('Location: ../index.php');
+    exit();
+}
 
 // Vérifier si les données POST sont présentes
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['username'], $_POST['password'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Construire l'URL pour l'API de login
-    $urlLogin = URL_API . '/login';
+    // Construire l'URL pour l'API de register
+    $urlRegister = URL_API . 'user/login';
 
     // Préparer les données à envoyer
     $postData = [
@@ -17,36 +22,59 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['username'], $_POST['p
         'password' => $password
     ];
 
+    $postDataJson = json_encode($postData); 
+
     // Initialiser cURL
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $urlLogin);
-    curl_setopt($ch, CURLOPT_POST, true); // Indiquer qu'il s'agit d'une requête POST
-    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData)); // Ajouter les données POST
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // Retourner la réponse sous forme de chaîne
+    curl_setopt($ch, CURLOPT_URL, $urlRegister);
+    curl_setopt($ch, CURLOPT_POST, true); 
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $postDataJson); 
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'Content-Type: application/json',
+        'Content-Length: ' . strlen($postDataJson)
+    ]);
 
     // Exécuter la requête
     $response = curl_exec($ch);
 
     // Vérifier les erreurs
     if (curl_errno($ch)) {
-        echo 'Une erreur est survenue : ' . curl_error($ch);
+        $_SESSION['error'] = 'Une erreur est survenue : ' . curl_error($ch);
         curl_close($ch);
+        header('Location: ../register.php');
         exit();
     }
 
     // Fermer la session cURL
     curl_close($ch);
 
-    // Traiter la réponse
-    $responseData = json_decode($response, true); // Décoder la réponse JSON
+     // Décoder la réponse JSON
+    $responseData = json_decode($response, true);
 
-    if (isset($responseData['token'])) {
-        // Succès : un token a été retourné
-        echo 'Connexion réussie. Token : ' . $responseData['token'];
+    if ($responseData['success'] === true) {
+        // Succès : rediriger vers la page de connexion
+        setcookie(
+            'token', 
+            $responseData['token'], 
+            [
+                'expires' => time() + (3600), // Cookie valide 1 heure
+                'path' => '/', // Disponible sur tout le site
+                'domain' => '', // Par défaut, le domaine actuel
+                'httponly' => true, // Inaccessible via JavaScript
+                'samesite' => 'Strict' // Empêche les requêtes intersites
+            ]
+        );
+        header('Location: ../index.php');
+        exit();
     } else {
-        // Échec : afficher le message d'erreur
-        echo 'Erreur : ' . ($responseData['message'] ?? 'Une erreur inconnue est survenue.');
+        // Échec : stocker le message d'erreur dans la session
+        $_SESSION['error'] = $response;
+        header('Location: ../login.php');
+        exit();
     }
 } else {
-    echo 'Veuillez fournir un nom d\'utilisateur et un mot de passe.';
+    $_SESSION['error'] = 'Veuillez fournir un nom d\'utilisateur et un mot de passe.';
+    header('Location: ../login.php');
+    exit();
 }
