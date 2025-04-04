@@ -21,7 +21,7 @@
             <ul>
                 <li><a href="../parcours.php">PARCOURS</a></li>
                 <li><a href="../participants.php">PARTICIPANTS</a></li>
-                <li><a href="../resultats.php">RÉSULTATS</a></li>
+                <li><a href="../pronostic.php">PRONOSTICS</a></li>
                 <li><a href="../contact.php">CONTACTS</a></li>
                 <?php if (isset($admin) && $admin === true): ?>
                     <li><a href="listUsers.php">GESTION ADMIN</a></li>
