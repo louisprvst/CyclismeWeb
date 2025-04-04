@@ -1,3 +1,7 @@
+<?php
+    require_once __DIR__ . '/controllers/resultatsController.php';
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>

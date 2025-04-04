@@ -23,16 +23,19 @@
                 <li><a href="../participants.php">PARTICIPANTS</a></li>
                 <li><a href="../resultats.php">RÉSULTATS</a></li>
                 <li><a href="../contact.php">CONTACTS</a></li>
-                <?php if (isset($admin) && $admin === true): ?>
-                    <li><a href="listUsers.php">GESTION ADMIN</a></li>
+                <li><a href="../tournoi.php">TOURNOI ENTRE AMIS</a></li>
+                <?php if (isset($_SESSION['user']) && isset($_SESSION['user']['admin']) && $_SESSION['user']['admin'] === TRUE): ?>
+                    <li><a href="../admin.php">GESTION ADMIN</a></li>
                 <?php endif; ?>
                 <!-- Boutons de connexion/déconnexion -->
                 <?php if (isset($_COOKIE['token'])): ?>
                     <!-- Bouton "Se déconnecter" -->
                     <li>
-                        <a href="" class="btn-icon">
+                        <a href="../profil.php" class="btn-icon">
                             <i class="fas fa-user"></i> <!-- Icône de profil -->
-                            <?php echo $_SESSION['user']['username']; ?>
+                            <?php if ((isset($_SESSION['user'])) && (isset($_SESSION['user']['username']))){
+                                echo $_SESSION['user']['username'];
+                                  } ?>
                         </a>
                         <a href="../controllers/logoutController.php" class="btn-icon">
                             <i class="fas fa-sign-out-alt"></i> <!-- Icône de déconnexion -->                        

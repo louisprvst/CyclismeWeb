@@ -11,7 +11,7 @@ if (!isset($_SESSION['user']['login']) || ($_SESSION['user']['login'] !== true))
 // Supprimer le cookie d'authentification
 setcookie('token', '', time() - 3600, '/', '', false, true); // Expire immédiatement
 
-unset($_SESSION['user']['login']);
+unset($_SESSION['user']);
 
 // Rediriger vers la page d'accueil
 header('Location: ../index.php');

@@ -69,6 +69,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['username'], $_POST['p
         $_SESSION['user']['username'] = $username;
         $_SESSION['user']['login'] = true;
 
+        if ($responseData['admin'] === true) {
+            $_SESSION['user']['admin'] = true;
+        } else {
+            $_SESSION['user']['admin'] = false;
+        }
+
         header('Location: ../index.php');
         exit();
     } else {

@@ -1,6 +1,6 @@
 <?php
 // Inclure le contrôleur pour récupérer les données des utilisateurs
-require_once 'controllers/listUsersController.php';
+require_once 'controllers/adminController.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">

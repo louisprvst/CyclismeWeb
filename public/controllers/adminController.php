@@ -1,6 +1,14 @@
 <?php
 
-require_once '../config/init.conf.php';
+require_once __DIR__ . '/../../config/init.conf.php';
+
+// Vérifier si l'utilisateur est connecté et est admin
+if (!isset($_SESSION['user']) && (!isset($_SESSION['user']['admin'])) || ($_SESSION['user']['admin'] !== true)) {
+    // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté ou n'est pas admin
+    $_SESSION['error'] = 'Vous devez être connecté en tant qu\'administrateur pour accéder à cette page.';
+    header('Location: ../login.php');
+    exit();
+}
 
 // Construire l'URL pour l'API de récupération des utilisateurs
 $urlListUsers = URL_API . 'user/list';
