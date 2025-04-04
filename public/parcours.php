@@ -1,5 +1,5 @@
 <?php
-
+require_once __DIR__ . '/controllers/parcoursController.php';
 ?>
 
 <!DOCTYPE html>
@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Résultats</title>
+    <title>Parcours</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,9 +21,9 @@
             <div>
                 <select name="annee" id="annee" onchange="this.form.submit()">
                     <?php
-                    for ($annee = 2020; $annee <= 2025; $annee++) {
-                        $selected = (isset($_GET['annee']) && $_GET['annee'] == $annee) ? 'selected' : '';
-                        echo "<option value=\"$annee\" $selected>$annee</option>";
+                    for ($anneeOption = 2020; $anneeOption <= 2025; $anneeOption++) {
+                        $selected = (isset($_GET['annee']) && $_GET['annee'] == $anneeOption) ? 'selected' : '';
+                        echo "<option value=\"$anneeOption\" $selected>$anneeOption</option>";
                     }
                     ?>
                 </select>
@@ -40,29 +40,22 @@
                     <th>Dénivelé</th>
                     <th>Difficulté</th>
                     <th>Type</th>
+                    <th>Vainqueur</th> <!-- Nouvelle colonne -->
                 </tr>
             </thead>
             <tbody>
                 <?php
-                // Tableau des résultats
-                $resultats = [
-                    ['num_etape' => '1', 'depart' => 'Calais', 'arrive' => 'Boulogne', 'distance' => '1cm', 'denivele' => '800/', 'difficulte' => 'Facile', 'type' => 'Plat'],
-                    ['num_etape' => '2', 'depart' => 'Lille', 'arrive' => 'Arras', 'distance' => '1cm', 'denivele' => '800/', 'difficulte' => 'Facile', 'type' => 'Plat'],
-                    ['num_etape' => '3', 'depart' => 'Lille', 'arrive' => 'Arras', 'distance' => '1cm', 'denivele' => '800/', 'difficulte' => 'Facile', 'type' => 'Plat'],
-                    ['num_etape' => '4', 'depart' => 'Lille', 'arrive' => 'Arras', 'distance' => '1cm', 'denivele' => '800/', 'difficulte' => 'Facile', 'type' => 'Plat'],
-                    
-                ];
-
-                // Boucle pour afficher les données dans le tableau
+                // Boucle pour afficher les données filtrées
                 foreach ($resultats as $resultat) {
                     echo "<tr>";
-                        echo "<td>{$resultat['num_etape']}</td>";
+                        echo "<td>{$resultat['numero_etape']}</td>";
                         echo "<td>{$resultat['depart']}</td>";
-                        echo "<td>{$resultat['arrive']}</td>";
+                        echo "<td>{$resultat['arrivee']}</td>";
                         echo "<td>{$resultat['distance']}</td>";
                         echo "<td>{$resultat['denivele']}</td>";
                         echo "<td>{$resultat['difficulte']}</td>";
                         echo "<td>{$resultat['type']}</td>";
+                        echo "<td>" . (!empty($resultat['nom_gagnant']) ? $resultat['nom_gagnant'] : 'N/A') . "</td>"; // Affiche le nom du gagnant ou "N/A"
                     echo "</tr>";
                 }
                 ?>
