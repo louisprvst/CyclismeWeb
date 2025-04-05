@@ -1,0 +1,49 @@
+* Styles pour la frise chronologique */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .timeline-event {
+            display: flex;
+            align-items: center;
+            margin: 15px 0; 
+            position: relative;
+            padding: 0 20px; 
+        }
+
+        .timeline-event:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-event .content {
+            background-color: #f4f4f4;
+            padding: 15px; 
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            margin: 0 200px; 
+        }
+
+        .timeline-event .line {
+            width: 2px;
+            height: 100%;
+            background-color: #007bff;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: -1;
+        }
+
+        .timeline-event .circle {
+            width: 20px;
+            height: 20px;
+            background-color: #007bff;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }

@@ -9,8 +9,10 @@ require_once __DIR__ . '/controllers/contactController.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact</title>
     <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="assets/styles/styles.css">
 </head>
 <body>
+    <?php include 'assets/inc/header.inc.php'; ?>
     <div class="contact-container">
         <h1>Contactez-nous</h1>
         <form method="POST" action="contact.php">
@@ -26,4 +28,5 @@ require_once __DIR__ . '/controllers/contactController.php';
         </form>
     </div>
 </body>
+<?php include 'assets/inc/footer.inc.php'; ?>
 </html>

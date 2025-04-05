@@ -1,5 +1,5 @@
 <?php
-
+require_once 'controllers/parcoursController.php';
 ?>
 
 <!DOCTYPE html>
@@ -7,13 +7,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Résultats</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Parcours</title>
+    <link rel="stylesheet" href="assets/styles/styles.css">
+    <link rel="stylesheet" href="assets/styles/timeline.css">
 </head>
 <body>
     <?php include 'assets/inc/header.inc.php'; ?>
     <div class="content">
-        <h1>Détail du Parcours</h1>
+        <h1>Frise Chronologique du Parcours</h1>
         <form id="result-form" method="GET" action="parcours.php">
             <div>
                 <label for="annee">Sélectionnez une année :</label>
@@ -30,45 +31,32 @@
             </div>
         </form>
 
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Numéro de l'étape</th>
-                    <th>Départ</th>
-                    <th>Arrivé</th>
-                    <th>Distance</th>
-                    <th>Dénivelé</th>
-                    <th>Difficulté</th>
-                    <th>Type</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                // Tableau des résultats
-                $resultats = [
-                    ['num_etape' => '1', 'depart' => 'Calais', 'arrive' => 'Boulogne', 'distance' => '1cm', 'denivele' => '800/', 'difficulte' => 'Facile', 'type' => 'Plat'],
-                    ['num_etape' => '2', 'depart' => 'Lille', 'arrive' => 'Arras', 'distance' => '1cm', 'denivele' => '800/', 'difficulte' => 'Facile', 'type' => 'Plat'],
-                    ['num_etape' => '3', 'depart' => 'Lille', 'arrive' => 'Arras', 'distance' => '1cm', 'denivele' => '800/', 'difficulte' => 'Facile', 'type' => 'Plat'],
-                    ['num_etape' => '4', 'depart' => 'Lille', 'arrive' => 'Arras', 'distance' => '1cm', 'denivele' => '800/', 'difficulte' => 'Facile', 'type' => 'Plat'],
-                    
-                ];
+        <div class="timeline">
+        <?php
+        foreach ($participants as $etape) {
+            $date = new DateTime($etape['date']);
+            $date_formatee = $date->format('d F Y'); 
 
-                // Boucle pour afficher les données dans le tableau
-                foreach ($resultats as $resultat) {
-                    echo "<tr>";
-                        echo "<td>{$resultat['num_etape']}</td>";
-                        echo "<td>{$resultat['depart']}</td>";
-                        echo "<td>{$resultat['arrive']}</td>";
-                        echo "<td>{$resultat['distance']}</td>";
-                        echo "<td>{$resultat['denivele']}</td>";
-                        echo "<td>{$resultat['difficulte']}</td>";
-                        echo "<td>{$resultat['type']}</td>";
-                    echo "</tr>";
-                }
-                ?>
-            </tbody>
-        </table>
+            echo '<div class="timeline-event">';
+            echo '<div class="line"></div>';
+            echo '<div class="circle" onclick="toggleContent(this)"></div>'; 
+            echo '<div class="content hidden">'; 
+            echo "<h3>Étape {$etape['numero_etape']} - {$date_formatee}</h3>";
+            echo "<p><strong>Départ :</strong> {$etape['depart']}</p>";
+            echo "<p><strong>Arrivée :</strong> {$etape['arrivee']}</p>";
+            echo "<p><strong>Distance :</strong> {$etape['distance']} km</p>";
+            echo "<p><strong>Type :</strong> {$etape['type']}</p>";
+            echo "<p><strong>Dénivelé :</strong> {$etape['denivele']} m</p>";
+            echo "<p><strong>Difficulté :</strong> {$etape['difficulte']}</p>";
+            echo "<p><strong>Gagnant :</strong> {$etape['nom_gagnant']}</p>";
+            echo "<p><strong>Description :</strong> {$etape['description']}</p>";
+            echo '</div>';
+            echo '</div>';
+        }
+        ?>
+    </div>
     </div>
     <?php include 'assets/inc/footer.inc.php'; ?>
+    <script src="assets/js/timeline.js"></script>
 </body>
 </html>

@@ -8,7 +8,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Participants</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/styles/style.css">
+    <link rel="stylesheet" href="assets/styles/participant.css">
 </head>
 <body>
     <?php include 'assets/inc/header.inc.php'; ?>
@@ -29,29 +30,25 @@
                 </select>
             </div>
         </form>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>N° du coureur</th>
-                    <th>Coureur</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                if (!empty($participants)) {
-                    // Boucle pour afficher les données dans le tableau
-                    foreach ($participants as $participant) {
-                        echo "<tr>";
-                        echo "<td>{$participant['num_coureur']}</td>";
-                        echo "<td>{$participant['coureur']}</td>";
-                        echo "</tr>";
-                    }
-                } else {
-                    echo "<tr><td colspan='5'>Aucun participant trouvé pour l'année $annee.</td></tr>";
+
+        <div class="participants-grid">
+            <?php
+            if (!empty($participants)) {
+                // Boucle pour afficher les participants sous forme de cartes
+                foreach ($participants as $participant) {
+                    echo '<div class="participant-card">';
+                    echo '<div class="profile-picture"></div>'; // Image grise anonyme
+                    echo '<div class="participant-info">';
+                    echo "<p class='participant-name'><strong>{$participant['coureur']}</strong></p>";
+                    echo "<p class='participant-number'>N° du coureur : {$participant['num_coureur']}</p>";
+                    echo '</div>';
+                    echo '</div>';
                 }
-                ?>
-            </tbody>
-        </table>
+            } else {
+                echo "<p>Aucun participant trouvé pour l'année $annee.</p>";
+            }
+            ?>
+        </div>
     </div>
     <?php include 'assets/inc/footer.inc.php'; ?>
 </body>
