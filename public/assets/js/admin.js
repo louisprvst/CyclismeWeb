@@ -23,3 +23,10 @@ function openEditForm(id, username, isAdmin) {
 function closeEditForm() {
     document.getElementById('edit-form').style.display = 'none';
 }
+
+function confirmDelete(userId, username) {
+    if (confirm(`Êtes-vous sûr de vouloir supprimer l'utilisateur "${username}" ? Cette action est irréversible.`)) {
+        // Rediriger vers une URL pour supprimer l'utilisateur
+        window.location.href = `admin.php?delete-user=${userId}`;
+    }
+}

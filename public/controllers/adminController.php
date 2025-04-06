@@ -71,6 +71,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update-user'])) {
     exit();
 }
 
+// Gestion de la suppression d'un utilisateur
+if (isset($_GET['delete-user'])) {
+    $userId = intval($_GET['delete-user']);
+
+    // Construire l'URL pour l'API de suppression
+    $urlDeleteUser = URL_API . "user/delete/$userId";
+
+    // Initialiser cURL pour envoyer la requête DELETE
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $urlDeleteUser);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'Content-Type: application/json',
+    ]);
+
+    // Exécuter la requête
+    $response = curl_exec($ch);
+
+    // Vérifier les erreurs
+    if (curl_errno($ch)) {
+        $_SESSION['error'] = 'Une erreur est survenue : ' . curl_error($ch);
+    } else {
+        $_SESSION['success'] = 'Utilisateur supprimé avec succès.';
+    }
+
+    // Fermer la session cURL
+    curl_close($ch);
+
+    // Rediriger vers la page admin
+    header('Location: ../admin.php');
+    exit();
+}
+
 // Récupérer la liste des utilisateurs
 $urlListUsers = URL_API . 'user/list';
 $ch = curl_init();
