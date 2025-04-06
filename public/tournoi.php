@@ -16,24 +16,48 @@ require_once(__DIR__ . '/controllers/tournoiController.php');
         <div class="container">
             <h1>Gestion du Tournoi</h1>
 
+            <!-- Formulaire pour choisir une étape -->
+            <form method="GET" action="tournoi.php">
+                <label for="etape_id">Choisir une étape :</label>
+                <select id="etape_id" name="etape_id" required>
+                    <?php foreach ($etapes as $etape): ?>
+                        <option value="<?php echo htmlspecialchars($etape['id']); ?>" <?php echo (isset($_GET['etape_id']) && $_GET['etape_id'] == $etape['id']) ? 'selected' : ''; ?>>
+                            <?php echo htmlspecialchars($etape['numero_etape'] . " - " . $etape['depart'] . " -> " . $etape['arrivee']); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+                <button type="submit">Afficher le classement</button>
+            </form>
+
             <!-- Formulaire pour ajouter un membre -->
-            <button id="add-member-btn">+ Ajouter un membre</button>
-            <form id="add-member-form" method="POST" style="display: none; margin-top: 20px;">
-                <label for="name">Nom :</label>
-                <input type="text" id="name" name="name" required>
-
-                <label for="date_naissance">Date de naissance :</label>
-                <input type="date" id="date_naissance" name="date_naissance" required>
-
+            <button id="add-member-btn">+ Ajouter un chrono</button>
+            <form id="add-member-form" method="POST" style="display: none;">
                 <label for="etape_id">Étape :</label>
                 <select id="etape_id" name="etape_id" required>
-                    <option value="1">Étape 1</option>
-                    <option value="2">Étape 2</option>
-                    <option value="3">Étape 3</option>
-                    <!-- Ajoutez d'autres étapes ici -->
+                    <?php foreach ($etapes as $etape): ?>
+                        <option value="<?php echo htmlspecialchars($etape['id']); ?>">
+                            <?php echo htmlspecialchars($etape['numero_etape'] . " - " . $etape['depart'] . " -> " . $etape['arrivee']); ?>
+                        </option>
+                    <?php endforeach; ?>
                 </select>
 
-                <label for="temps">Temps (hh:mm:ss) :</label>
+                <label for="existing_member_id">Membre existant :</label>
+                <select id="existing_member_id" name="existing_member_id">
+                    <option value="">-- Sélectionnez un membre existant --</option>
+                    <?php foreach ($members as $member): ?>
+                        <option value="<?php echo htmlspecialchars($member['id']); ?>">
+                            <?php echo htmlspecialchars($member['name']); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+
+                <label for="name">Nouveau membre :</label>
+                <input type="text" id="name" name="name" placeholder="Nom du nouveau membre">
+
+                <label for="date_naissance">Date de naissance :</label>
+                <input type="date" id="date_naissance" name="date_naissance">
+
+                <label for="temps">Temps (HH:MM:SS) :</label>
                 <input type="text" id="temps" name="temps" placeholder="00:00:00" required>
 
                 <button type="submit">Ajouter</button>
@@ -70,13 +94,7 @@ require_once(__DIR__ . '/controllers/tournoiController.php');
         </div>
     </main>
 
-    <script>
-        // Afficher/Masquer le formulaire d'ajout de membre
-        document.getElementById('add-member-btn').addEventListener('click', function () {
-            const form = document.getElementById('add-member-form');
-            form.style.display = form.style.display === 'none' ? 'block' : 'none';
-        });
-    </script>
+    <script src="assets/js/tournoi.js"></script>
     <?php include 'assets/inc/footer.inc.php'; ?>
 </body>
 </html>
