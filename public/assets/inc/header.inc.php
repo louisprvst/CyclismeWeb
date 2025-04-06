@@ -30,7 +30,7 @@
                 <?php if (isset($_COOKIE['token'])): ?>
                     <!-- Bouton "Se déconnecter" -->
                     <li>
-                        <a href="../profil.php" class="btn-icon">
+                        <a href="" class="btn-icon">
                             <i class="fas fa-user"></i> <!-- Icône de profil -->
                             <?php if ((isset($_SESSION['user'])) && (isset($_SESSION['user']['username']))){
                                 echo $_SESSION['user']['username'];
