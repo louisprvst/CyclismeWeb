@@ -77,5 +77,6 @@ require_once(__DIR__ . '/controllers/tournoiController.php');
             form.style.display = form.style.display === 'none' ? 'block' : 'none';
         });
     </script>
+    <?php include 'assets/inc/footer.inc.php'; ?>
 </body>
 </html>

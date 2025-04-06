@@ -7,7 +7,7 @@ if (!isset($_SESSION['user']['login']) || ($_SESSION['user']['login'] !== true))
     header('Location: ../login.php');
     exit();
 }
- 
+
 // Instanciation de la classe GestionTournoi
 $tournoi = new GestionTournoi($bdd);
 
@@ -26,9 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'], $_POST['date_
 
     // Ajouter le résultat
     $tournoi->addResult($etape_id, $member_id, $temps);
-
-    // Mettre à jour le classement pour l'étape
-    $tournoi->updateRanking($etape_id);
 
     // Redirection pour éviter la soumission multiple
     header('Location: tournoi.php');

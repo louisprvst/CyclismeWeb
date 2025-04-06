@@ -8,7 +8,8 @@ require_once __DIR__ . '/controllers/pronosticController.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pronostics</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/styles/style.css">
+    <link rel="stylesheet" href="assets/styles/pronostic.css">
 </head>
 <body>
     <div class="content">
@@ -36,43 +37,37 @@ require_once __DIR__ . '/controllers/pronosticController.php';
 
         <!-- Affichage des pronostics -->
         <?php if (isset($_GET['etape'])): ?>
+            <p class="pronostic-info">Nos pronostics sont établis en fonction des performances des coureurs sur des étapes similaires (niveau de difficulté, dénivelé, etc.).</p>
             <h2>Top 3 pour l'étape <?= htmlspecialchars($numero_etape) ?></h2>
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>Position</th>
-                        <th>Nom</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($top3_etape as $row): ?>
-                        <tr>
-                            <td><?= htmlspecialchars($row['position']) ?></td>
-                            <td><?= htmlspecialchars($row['nom']) ?></td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+            <div class="podium">
+                <?php foreach ($top3_etape as $coureur): ?>
+                    <div class="podium-card position-<?= htmlspecialchars($coureur['position']) ?>">
+                        <div class="podium-rank">#<?= htmlspecialchars($coureur['position']) ?></div>
+                        <div class="podium-name"><?= htmlspecialchars($coureur['nom']) ?></div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
 
-            <h2>Top 3 par spécialité pour l'étape <?= htmlspecialchars($numero_etape) ?></h2>
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>Spécialité</th>
-                        <th>Nom</th>
-                        <th>Équipe</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($top3_par_specialite as $row): ?>
-                        <tr>
-                            <td><?= htmlspecialchars($row['specialite']) ?></td>
-                            <td><?= htmlspecialchars($row['nom']) ?></td>
-                            <td><?= htmlspecialchars($row['equipe']) ?></td>
-                        </tr>
+            <h2>Podium par spécialité</h2>
+            <?php
+            // Regrouper les coureurs par spécialité
+            $specialities = [];
+            foreach ($top3_par_specialite as $specialite) {
+                $specialities[$specialite['specialite']][] = $specialite;
+            }
+            ?>
+
+            <?php foreach ($specialities as $speciality => $coureurs): ?>
+                <h3><?= ucfirst(htmlspecialchars($speciality)) ?></h3>
+                <div class="podium">
+                    <?php foreach ($coureurs as $coureur): ?>
+                        <div class="podium-card position-<?= htmlspecialchars($coureur['position']) ?>">
+                            <div class="podium-rank">#<?= htmlspecialchars($coureur['position']) ?></div>
+                            <div class="podium-name"><?= htmlspecialchars($coureur['nom']) ?></div>
+                        </div>
                     <?php endforeach; ?>
-                </tbody>
-            </table>
+                </div>
+            <?php endforeach; ?>
         <?php endif; ?>
     </div>
     <?php include 'assets/inc/footer.inc.php'; ?>

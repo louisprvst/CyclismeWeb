@@ -35,37 +35,14 @@ class GestionTournoi
     // Récupérer le classement pour une étape donnée
     public function getRanking($etape_id)
     {
-        $query = "
-            SELECT tm.name, tm.date_naissance, tr.temps
-            FROM tournois_result tr
-            INNER JOIN tournois_members tm ON tr.member_id = tm.id
-            WHERE tr.etape_id = :etape_id
-            ORDER BY tr.temps ASC
-        ";
+        $query = "SELECT tr.classement, tm.name, tm.date_naissance, tr.temps 
+                  FROM tournois_result tr
+                  JOIN tournois_members tm ON tr.member_id = tm.id
+                  WHERE tr.etape_id = :etape_id
+                  ORDER BY tr.classement ASC";
         $stmt = $this->bdd->prepare($query);
         $stmt->bindParam(':etape_id', $etape_id);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    public function updateRanking($etape_id)
-    {
-        // Récupérer les résultats
-        $query = "SELECT id, temps FROM tournois_result WHERE etape_id = :etape_id ORDER BY temps ASC";
-        $stmt = $this->bdd->prepare($query);
-        $stmt->bindParam(':etape_id', $etape_id);
-        $stmt->execute();
-        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        // Calculer les rangs
-        $rank = 1;
-        foreach ($results as $result) {
-            $updateQuery = "UPDATE tournois_result SET classement = :rank WHERE id = :id";
-            $updateStmt = $this->bdd->prepare($updateQuery);
-            $updateStmt->bindParam(':rank', $rank);
-            $updateStmt->bindParam(':id', $result['id']);
-            $updateStmt->execute();
-            $rank++;
-        }
     }
 }

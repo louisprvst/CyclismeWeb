@@ -1,20 +1,18 @@
 <?php
 
-require_once '../config/init.conf.php';
+require_once __DIR__ . '/../../config/init.conf.php';
 
 if (!isset($_SESSION['user']['login']) || ($_SESSION['user']['login'] !== true)) {
-    // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
     header('Location: ../login.php');
     exit();
 }
 
-
-$etapes = []; // Initialisation des étapes
-$top3_etape = []; // Initialisation des résultats de top3_etape
-$top3_par_specialite = []; // Initialisation des résultats de top3_par_specialite
+$etapes = [];
+$top3_etape = [];
+$top3_par_specialite = [];
 
 // Récupérer les étapes depuis l'API
-$url = "http://62.72.18.63:11048/etapes";
+$url = "http://62.72.18.63:11048/etapes/2025";
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -37,14 +35,35 @@ if (json_last_error() !== JSON_ERROR_NONE || !is_array($etapes)) {
 if (isset($_GET['etape'])) {
     $numero_etape = intval($_GET['etape']);
 
-    // Appeler la fonction top3_etape(id)
-    $stmt = $bdd->prepare("SELECT * FROM top3_etape(:id)");
-    $stmt->execute(['id' => $numero_etape]);
-    $top3_etape = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    try {
+        // Appeler la fonction top3_etape(id)
+        $stmt = $bdd->prepare("SELECT * FROM top3_etape(:id)");
+        $stmt->bindParam(':id', $numero_etape, PDO::PARAM_INT);
+        $stmt->execute();
+        $raw_top3_etape = $stmt->fetchAll(PDO::FETCH_NUM);
 
-    // Appeler la fonction top3_par_specialite
-    $stmt = $bdd->prepare("SELECT * FROM top3_par_specialite()");
-    $stmt->execute();
-    $top3_par_specialite = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        // Transformer les résultats en tableaux associatifs
+        foreach ($raw_top3_etape as $row) {
+            $top3_etape[] = [
+                'position' => $row[0],
+                'nom' => $row[1],
+            ];
+        }
+
+        // Appeler la fonction top3_par_specialite
+        $stmt = $bdd->query("SELECT * FROM top3_par_specialite()");
+        $raw_top3_par_specialite = $stmt->fetchAll(PDO::FETCH_NUM);
+
+        // Transformer les résultats en tableaux associatifs
+        foreach ($raw_top3_par_specialite as $row) {
+            $top3_par_specialite[] = [
+                'specialite' => $row[0],
+                'position' => $row[1],
+                'nom' => $row[2],
+            ];
+        }
+
+    } catch (PDOException $e) {
+        die("Erreur lors de la récupération des données : " . $e->getMessage());
+    }
 }
-?>

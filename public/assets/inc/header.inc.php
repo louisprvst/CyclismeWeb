@@ -21,9 +21,8 @@
             <ul>
                 <li><a href="../parcours.php">PARCOURS</a></li>
                 <li><a href="../participants.php">PARTICIPANTS</a></li>
-                <li><a href="../pronostic.php">PRONOSTIC</a></li>
-                <li><a href="../contact.php">CONTACTS</a></li>
-                <li><a href="../tournoi.php">TOURNOI ENTRE AMIS</a></li>
+                <li><a href="../pronostic.php">PRÉDICTIONS</a></li>
+                <li><a href="../tournoi.php">SIMULATION DE TOURNOI</a></li>
                 <?php if (isset($_SESSION['user']) && isset($_SESSION['user']['admin']) && $_SESSION['user']['admin'] === TRUE): ?>
                     <li><a href="../admin.php">GESTION ADMIN</a></li>
                 <?php endif; ?>
